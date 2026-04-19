@@ -1,0 +1,970 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>BrandonH0's — Home</title>
+
+		<!-- Icons -->
+		<link
+			rel="stylesheet"
+			href="https://unpkg.com/primeicons/primeicons.css" />
+
+		<!-- Google Fonts: Inter -->
+		<link
+			rel="preconnect"
+			href="https://fonts.googleapis.com" />
+		<link
+			rel="preconnect"
+			href="https://fonts.gstatic.com"
+			crossorigin />
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" />
+
+		<style>
+			/* ─── Reset ──────────────────────────────────────────────────────── */
+			*,
+			*::before,
+			*::after {
+				box-sizing: border-box;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* ─── Design tokens ──────────────────────────────────────────────── */
+			:root {
+				--mono: "Cascadia Code", "Fira Code", "Consolas", monospace;
+				--sans: "Inter", system-ui, sans-serif;
+				--accent: #00d4ff;
+				--accent-2: #a855f7;
+				--accent-glow: rgba(0, 212, 255, 0.15);
+				--accent-2-glow: rgba(168, 85, 247, 0.12);
+				--bg: #080b12;
+				--surface: rgba(255, 255, 255, 0.04);
+				--surface-hover: rgba(255, 255, 255, 0.07);
+				--border: rgba(255, 255, 255, 0.08);
+				--border-hover: rgba(255, 255, 255, 0.16);
+				--text: #e2e4f0;
+				--text-muted: #8b8fa8;
+				--radius: 14px;
+				--radius-sm: 8px;
+			}
+
+			/* ─── PrimeVue 4 token overrides ─────────────────────────────────── */
+			:root {
+				--p-primary-500: #00d4ff;
+				--p-primary-400: #33ddff;
+				--p-primary-600: #00a8cc;
+				--p-primary-color: #00d4ff;
+				--p-surface-900: #080b12;
+				--p-surface-800: #0d1018;
+				--p-surface-700: #141822;
+			}
+
+			/* ─── Scrollbar ──────────────────────────────────────────────────── */
+			::-webkit-scrollbar {
+				width: 5px;
+			}
+			::-webkit-scrollbar-track {
+				background: var(--bg);
+			}
+			::-webkit-scrollbar-thumb {
+				background: var(--accent-2);
+				border-radius: 99px;
+			}
+			::-webkit-scrollbar-thumb:hover {
+				background: var(--accent);
+			}
+
+			/* ─── Body & animated dot grid ───────────────────────────────────── */
+			body {
+				background-color: var(--bg);
+				background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+				background-size: 28px 28px;
+				color: var(--text);
+				font-family: var(--sans);
+				line-height: 1.65;
+				min-height: 100vh;
+			}
+			@media (prefers-reduced-motion: no-preference) {
+				body {
+					animation: bg-drift 70s linear infinite;
+				}
+			}
+			@keyframes bg-drift {
+				from {
+					background-position: 0 0;
+				}
+				to {
+					background-position: 28px 28px;
+				}
+			}
+
+			/* ─── Top gradient bar ───────────────────────────────────────────── */
+			.top-bar {
+				height: 2px;
+				background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent));
+				background-size: 200% 100%;
+				animation: bar-slide 5s ease infinite;
+			}
+			@keyframes bar-slide {
+				0% {
+					background-position: 0% 0;
+				}
+				50% {
+					background-position: 100% 0;
+				}
+				100% {
+					background-position: 0% 0;
+				}
+			}
+
+			/* ─── Links ──────────────────────────────────────────────────────── */
+			a {
+				color: var(--accent);
+				text-decoration: none;
+				transition: color 0.2s;
+			}
+			a:hover {
+				color: var(--accent-2);
+			}
+
+			/* ─── Header ─────────────────────────────────────────────────────── */
+			header {
+				position: sticky;
+				top: 0;
+				z-index: 100;
+				background: rgba(8, 11, 18, 0.65);
+				backdrop-filter: blur(20px);
+				-webkit-backdrop-filter: blur(20px);
+				border-bottom: 1px solid var(--border);
+				padding: 0.9rem 2.5rem;
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				gap: 1rem;
+				flex-wrap: wrap;
+			}
+
+			.logo {
+				font-family: var(--mono);
+				font-size: 1.05rem;
+				font-weight: 600;
+				background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				user-select: none;
+				letter-spacing: -0.01em;
+			}
+
+			nav {
+				display: flex;
+				gap: 0.25rem;
+			}
+
+			/* ─── Main ───────────────────────────────────────────────────────── */
+			main {
+				max-width: 900px;
+				margin: 0 auto;
+				padding: 2rem 2.5rem 7rem;
+				counter-reset: section-counter;
+			}
+
+			section {
+				margin-bottom: 1rem;
+			}
+			section:not(.hero) {
+				counter-increment: section-counter;
+			}
+
+			/* ─── Section headings ───────────────────────────────────────────── */
+			h2 {
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.2rem;
+				font-size: 1.55rem;
+				font-weight: 700;
+				letter-spacing: -0.02em;
+				margin-bottom: 2rem;
+			}
+			h2::before {
+				content: "/\\_"  counter(section-counter) "_/\\ ";
+				font-family: var(--mono);
+				font-size: 0.7rem;
+				font-weight: 400;
+				color: var(--accent);
+				letter-spacing: 0.1em;
+				text-transform: uppercase;
+			}
+
+			/* ─── Hero ───────────────────────────────────────────────────────── */
+			.hero {
+				padding: 5rem 0 5.5rem;
+				position: relative;
+			}
+
+			/* Ambient glow blobs */
+			.hero::before {
+				content: "";
+				position: absolute;
+				top: -80px;
+				left: -180px;
+				width: 640px;
+				height: 520px;
+				background: radial-gradient(ellipse, rgba(0, 212, 255, 0.08) 0%, transparent 65%);
+				pointer-events: none;
+				z-index: 0;
+			}
+			.hero::after {
+				content: "";
+				position: absolute;
+				top: 40px;
+				right: -220px;
+				width: 520px;
+				height: 420px;
+				background: radial-gradient(ellipse, rgba(168, 85, 247, 0.07) 0%, transparent 65%);
+				pointer-events: none;
+				z-index: 0;
+			}
+			.hero > * {
+				position: relative;
+				z-index: 1;
+			}
+
+			/* Terminal prompt */
+			.terminal-prompt {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.65rem;
+				background: rgba(0, 212, 255, 0.05);
+				border: 1px solid rgba(0, 212, 255, 0.18);
+				border-radius: var(--radius-sm);
+				padding: 0.4rem 1rem;
+				margin-bottom: 1.75rem;
+				font-family: var(--mono);
+				font-size: 0.85rem;
+				color: var(--accent);
+			}
+			.terminal-prompt::before {
+				content: "● ● ●";
+				font-size: 0.5rem;
+				color: var(--text-muted);
+				letter-spacing: 4px;
+				opacity: 0.6;
+			}
+
+			.cursor {
+				display: inline-block;
+				width: 2px;
+				height: 0.9em;
+				background: var(--accent);
+				vertical-align: text-bottom;
+				margin-left: 1px;
+				animation: blink 1s step-end infinite;
+			}
+			@keyframes blink {
+				0%,
+				100% {
+					opacity: 1;
+				}
+				50% {
+					opacity: 0;
+				}
+			}
+
+			/* Name */
+			.hero h1 {
+				font-size: clamp(2.6rem, 7vw, 4.2rem);
+				font-weight: 800;
+				line-height: 1.08;
+				letter-spacing: -0.04em;
+				margin-bottom: 10px;
+				background: linear-gradient(125deg, #ffffff 0%, var(--accent) 42%, var(--accent-2) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.hero .subtitle {
+				color: var(--text-muted);
+				max-width: 500px;
+				font-size: 1.05rem;
+				line-height: 1.7;
+				margin-bottom: 1.75rem;
+			}
+
+			/* Quick stat pills */
+			.hero-stats {
+				display: flex;
+				align-items: center;
+				gap: 0.65rem;
+				margin-bottom: 2.25rem;
+				flex-wrap: wrap;
+			}
+			.stat-pill {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.35rem;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: 99px;
+				padding: 0.25rem 0.8rem;
+				font-size: 0.8rem;
+				color: var(--text-muted);
+				font-variant-numeric: tabular-nums;
+			}
+			.stat-pill strong {
+				color: var(--text);
+				font-weight: 600;
+			}
+
+			.btn-row {
+				display: flex;
+				gap: 0.75rem;
+				flex-wrap: wrap;
+			}
+
+			/* ─── Skills ─────────────────────────────────────────────────────── */
+			.skills-group {
+				margin-bottom: 1.75rem;
+			}
+
+			.skills-group-label {
+				font-family: var(--mono);
+				font-size: 0.7rem;
+				color: var(--text-muted);
+				text-transform: uppercase;
+				letter-spacing: 0.14em;
+				margin-bottom: 0.75rem;
+				padding-bottom: 0.4rem;
+				border-bottom: 1px solid var(--border);
+			}
+
+			.tag-list {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 0.5rem;
+			}
+
+			.tag-list .p-chip {
+				font-family: var(--mono);
+				font-size: 0.79rem;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				transition:
+					border-color 0.2s,
+					box-shadow 0.2s,
+					background 0.2s;
+				cursor: default;
+			}
+			.tag-list .p-chip:hover {
+				background: var(--surface-hover);
+				border-color: var(--accent);
+				box-shadow: 0 0 12px var(--accent-glow);
+			}
+
+			/* ─── Projects ───────────────────────────────────────────────────── */
+			.project-grid {
+				display: grid;
+				grid-template-columns: repeat(auto-fill, minmax(268px, 1fr));
+				gap: 1.25rem;
+			}
+
+			.card-wrapper {
+				border-radius: var(--radius);
+				padding: 1px;
+				background: var(--border);
+				transition:
+					background 0.35s,
+					transform 0.25s,
+					box-shadow 0.25s;
+			}
+			.card-wrapper:hover {
+				background: linear-gradient(135deg, var(--accent), var(--accent-2));
+				transform: translateY(-5px);
+				box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+			}
+
+			.card-wrapper .p-card {
+				border-radius: calc(var(--radius) - 1px);
+				background: #0d1018;
+				border: none;
+				height: 100%;
+			}
+
+			.project-grid .p-card .p-card-body {
+				height: 100%;
+				display: flex;
+				flex-direction: column;
+				padding: 1.4rem;
+			}
+
+			.project-grid .p-card .p-card-title {
+				font-size: 1rem;
+				font-weight: 700;
+				letter-spacing: -0.01em;
+				margin-bottom: 0.5rem;
+			}
+
+			.project-grid .p-card .p-card-content {
+				flex: 1;
+				color: var(--text-muted);
+				font-size: 0.9rem;
+				line-height: 1.6;
+				padding-top: 0;
+			}
+
+			.project-grid .p-card .p-card-footer {
+				display: flex;
+				align-items: center;
+				justify-content: space-between;
+				padding-top: 1rem;
+				border-top: 1px solid var(--border);
+				margin-top: 0.75rem;
+			}
+
+			/* Language badge */
+			.lang {
+				display: inline-flex;
+				align-items: center;
+				gap: 0.3rem;
+				font-family: var(--mono);
+				font-size: 0.75rem;
+				color: var(--accent);
+				background: rgba(0, 212, 255, 0.08);
+				border: 1px solid rgba(0, 212, 255, 0.18);
+				border-radius: 99px;
+				padding: 0.15rem 0.65rem;
+			}
+			.lang::before {
+				content: "";
+				display: inline-block;
+				width: 6px;
+				height: 6px;
+				border-radius: 50%;
+				background: var(--accent);
+				flex-shrink: 0;
+			}
+
+			.card-links {
+				display: flex;
+				gap: 0.25rem;
+			}
+
+			/* Stagger card fade-in */
+			.card-wrapper:nth-child(1) {
+				transition-delay: 0s;
+			}
+			.card-wrapper:nth-child(2) {
+				transition-delay: 0.08s;
+			}
+			.card-wrapper:nth-child(3) {
+				transition-delay: 0.16s;
+			}
+
+			/* ─── Flowchart ─────────────────────────────────────────────────── */
+			.flowchart {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+			}
+
+			.flow-node {
+				width: 100%;
+				max-width: 480px;
+			}
+
+			.flow-node-inner {
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				padding: 1rem 1.6rem;
+				text-align: center;
+				transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+			}
+			.flow-node-inner:hover {
+				background: var(--surface-hover);
+				border-color: var(--accent);
+				box-shadow: 0 0 18px var(--accent-glow);
+			}
+
+			.flow-node-inner.flow-final {
+				border-color: var(--accent-2);
+				background: rgba(168, 85, 247, 0.07);
+			}
+			.flow-node-inner.flow-final:hover {
+				box-shadow: 0 0 24px var(--accent-2-glow);
+				border-color: var(--accent-2);
+			}
+
+			.flow-step-num {
+				font-family: var(--mono);
+				font-size: 0.65rem;
+				color: var(--accent);
+				text-transform: uppercase;
+				letter-spacing: 0.12em;
+				margin-bottom: 0.25rem;
+			}
+			.flow-node-inner.flow-final .flow-step-num {
+				color: var(--accent-2);
+			}
+
+			.flow-node-title {
+				font-weight: 700;
+				font-size: 1rem;
+				letter-spacing: -0.01em;
+				color: var(--text);
+			}
+			.flow-node-inner.flow-final .flow-node-title {
+				background: linear-gradient(120deg, var(--accent) 0%, var(--accent-2) 100%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+			}
+
+			.flow-node-sub {
+				font-size: 0.8rem;
+				color: var(--text-muted);
+				margin-top: 0.25rem;
+				line-height: 1.5;
+			}
+
+			.flow-arrow {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				padding: 2px 0;
+			}
+			.flow-arrow-line {
+				width: 2px;
+				height: 28px;
+				background: linear-gradient(to bottom, var(--accent), var(--accent-2));
+				opacity: 0.4;
+			}
+			.flow-arrow-head {
+				width: 0;
+				height: 0;
+				border-left: 6px solid transparent;
+				border-right: 6px solid transparent;
+				border-top: 8px solid var(--accent-2);
+				opacity: 0.5;
+			}
+
+			/* ─── Contact cards ───────────────────────────────────────────────── */
+			.contact-cards {
+				display: flex;
+				flex-wrap: wrap;
+				gap: 1rem;
+			}
+
+			.contact-card {
+				display: flex;
+				align-items: center;
+				gap: 0.85rem;
+				padding: 1.1rem 1.6rem;
+				background: var(--surface);
+				border: 1px solid var(--border);
+				border-radius: var(--radius);
+				color: var(--text);
+				text-decoration: none;
+				font-size: 0.95rem;
+				transition:
+					transform 0.2s,
+					border-color 0.2s,
+					box-shadow 0.2s,
+					background 0.2s;
+				min-width: 220px;
+			}
+			.contact-card:hover {
+				transform: translateY(-4px);
+				background: var(--surface-hover);
+				border-color: var(--accent);
+				box-shadow: 0 8px 28px rgba(0, 212, 255, 0.1);
+				color: var(--text);
+				text-decoration: none;
+			}
+			.contact-card i {
+				font-size: 1.15rem;
+				color: var(--accent);
+				flex-shrink: 0;
+			}
+			.contact-card-body {
+				display: flex;
+				flex-direction: column;
+				gap: 0.1rem;
+			}
+			.contact-card-label {
+				font-size: 0.7rem;
+				font-family: var(--mono);
+				text-transform: uppercase;
+				letter-spacing: 0.1em;
+				color: var(--text-muted);
+			}
+			.contact-card-value {
+				font-weight: 500;
+				font-size: 0.92rem;
+			}
+
+			/* ─── Footer ─────────────────────────────────────────────────────── */
+			footer {
+				border-top: 1px solid var(--border);
+				text-align: center;
+				padding: 1.75rem 1rem;
+				color: var(--text-muted);
+				font-size: 0.78rem;
+				font-family: var(--mono);
+				background: rgba(8, 11, 18, 0.8);
+			}
+
+			/* ─── Scroll-fade ────────────────────────────────────────────────── */
+			.fade-in-section {
+				opacity: 0;
+				transform: translateY(28px);
+				transition:
+					opacity 0.65s ease,
+					transform 0.65s ease;
+			}
+			.fade-in-section.visible {
+				opacity: 1;
+				transform: translateY(0);
+			}
+			@media (prefers-reduced-motion: reduce) {
+				.fade-in-section {
+					opacity: 1;
+					transform: none;
+					transition: none;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app">
+			<!-- Animated gradient top line -->
+			<div class="top-bar"></div>
+
+			<header>
+				<div class="logo">~/BrandonH0</div>
+				<nav>
+					<p-button
+						label="about"
+						text
+						size="small"
+						@click="scrollTo('about')" />
+					<p-button
+						label="skills"
+						text
+						size="small"
+						@click="scrollTo('skills')" />
+					<p-button
+						label="projects"
+						text
+						size="small"
+						@click="scrollTo('projects')" />
+					<!-- <p-button
+						label="contact"
+						text
+						size="small"
+						@click="scrollTo('contact')" /> -->
+				</nav>
+			</header>
+
+			<main>
+				<!-- Hero -->
+				<section
+					class="hero"
+					id="about">
+					<div class="terminal-prompt"><span id="typed-greeting"></span><span class="cursor"></span></div>
+					<h1>Brandon Hartman</h1>
+					<p class="subtitle">Lead Software Engineer</p>
+					<div class="hero-stats">
+						<span class="stat-pill"><strong>20+</strong> years experience</span>
+						<span class="stat-pill"><strong>7+</strong> Major projects shipped</span>
+						<span class="stat-pill"><strong>0</strong> open source :(</span>
+					</div>
+					<div class="btn-row">
+						<p-button
+							label="View projects"
+							icon="pi pi-folder-open"
+							@click="scrollTo('projects')" />
+					</div>
+				</section>
+
+				<!-- Skills -->
+				<section
+					id="skills"
+					class="fade-in-section">
+					<h2>Skills</h2>
+					<div
+						v-for="group in skillGroups"
+						:key="group.label"
+						class="skills-group">
+						<div class="skills-group-label">{{ group.label }}</div>
+						<div class="tag-list">
+							<p-chip
+								v-for="skill in group.skills"
+								:key="skill"
+								:label="skill" />
+						</div>
+					</div>
+				</section>
+
+				<!-- Projects -->
+				<section
+					id="projects"
+					class="fade-in-section">
+					<h2>Projects</h2>
+					<div class="project-grid">
+						<div
+							class="card-wrapper"
+							v-for="project in projects"
+							:key="project.name">
+							<p-card>
+								<template #title>{{ project.name }}</template>
+								<template #content>{{ project.description }}</template>
+								<template #footer>
+									<span class="lang">{{ project.lang }}</span>
+									<div class="card-links">
+										<p-button
+											v-if="project.github"
+											label="GitHub"
+											icon="pi pi-github"
+											text
+											size="small"
+											as="a"
+											:href="project.github"
+											target="_blank"
+											rel="noopener noreferrer" />
+										<p-button
+											v-if="project.live"
+											label="Live"
+											icon="pi pi-external-link"
+											text
+											size="small"
+											as="a"
+											:href="project.live"
+											target="_blank"
+											rel="noopener noreferrer" />
+									</div>
+								</template>
+							</p-card>
+						</div>
+					</div>
+				</section>
+
+				<!-- Dev Flowchart -->
+				<section
+					id="flowchart"
+					class="fade-in-section">
+					<h2>How Development has changed</h2>
+					<div class="flowchart">
+
+						<div class="flow-node">
+							<div class="flow-node-inner">
+								<div class="flow-step-num">Grampa</div>
+								<div class="flow-node-title">Look at the Documentation</div>
+								<div class="flow-node-sub">Skim the official docs hoping a code example matches exactly your situation</div>
+							</div>
+						</div>
+
+						<div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+						<div class="flow-node">
+							<div class="flow-node-inner">
+								<div class="flow-step-num">Dad</div>
+								<div class="flow-node-title">Google It</div>
+								<div class="flow-node-sub">Paste the error verbatim — add the framework name for extra points</div>
+							</div>
+						</div>
+
+						<div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+						<div class="flow-node">
+							<div class="flow-node-inner">
+								<div class="flow-step-num">Sibling</div>
+								<div class="flow-node-title">Google → Stack Overflow</div>
+								<div class="flow-node-sub">Find a 2009 thread. The accepted answer is marked wrong. The real answer has 4 upvotes and says "just use X"</div>
+							</div>
+						</div>
+
+						<div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+						<div class="flow-node">
+							<div class="flow-node-inner">
+								<div class="flow-step-num">Kid</div>
+								<div class="flow-node-title">Ask ChatGPT</div>
+								<div class="flow-node-sub">Receives a confident 47-line solution using an API that was deprecated in 2022</div>
+							</div>
+						</div>
+
+						<div class="flow-arrow"><div class="flow-arrow-line"></div><div class="flow-arrow-head"></div></div>
+
+						<div class="flow-node">
+							<div class="flow-node-inner flow-final">
+								<div class="flow-step-num">Newborn</div>
+								<div class="flow-node-title">You Are a Senior Dev That Just Woke Up</div>
+								<div class="flow-node-sub">Build the object. Don't hallucinate. Or else.</div>
+							</div>
+						</div>
+
+					</div>
+				</section>
+
+				<!-- Contact -->
+				<!-- <section
+					id="contact"
+					class="fade-in-section">
+					<h2>Contact</h2>
+					<div class="contact-cards">
+						<a
+							href="mailto:you@example.com"
+							class="contact-card">
+							<i class="pi pi-envelope"></i>
+							<div class="contact-card-body">
+								<span class="contact-card-label">Email</span>
+								<span class="contact-card-value">you@example.com</span>
+							</div>
+						</a>
+						<a
+							href="https://github.com/yourusername"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="contact-card">
+							<i class="pi pi-github"></i>
+							<div class="contact-card-body">
+								<span class="contact-card-label">GitHub</span>
+								<span class="contact-card-value">yourusername</span>
+							</div>
+						</a>
+						<a
+							href="https://linkedin.com/in/yourprofile"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="contact-card">
+							<i class="pi pi-linkedin"></i>
+							<div class="contact-card-body">
+								<span class="contact-card-label">LinkedIn</span>
+								<span class="contact-card-value">yourprofile</span>
+							</div>
+						</a>
+					</div>
+				</section> -->
+			</main>
+
+			<footer>&copy; 2026 — built with Vue + PrimeVue</footer>
+		</div>
+
+		<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+		<script src="https://unpkg.com/primevue/umd/primevue.min.js"></script>
+		<script src="https://unpkg.com/@primeuix/themes/umd/aura.js"></script>
+
+		<script>
+			const { createApp } = Vue;
+
+			const skillGroups = [
+				{
+					label: "Languages",
+					skills: ["C", "C++", "Classic ASP", "C#", "VB.NET", "Razor", "Python"],
+				},
+				{
+					label: "Frameworks & UI",
+					skills: ["Vue", "PrimeVue", "VuetifyJs", "React", "Node.js", "HTML", "CSS", "TypeScript", "JavaScript", "Azure"],
+				},
+				{
+					label: "Data & DevOps",
+					skills: ["MSSQL", "MySQL", "EF Core", "Git", "TFS", "Azure DevOps"],
+				},
+			];
+
+			const projects = [
+				{
+					name: "Options Backtester",
+					description: "An options backtesting tool used to test complex strategies.",
+					lang: "C#/Vue/VuetifyJs",
+					github: null,
+					live: null,
+				},
+				{
+					name: "Options Finder",
+					description: "A tool for finding optimal options trading strategies.",
+					lang: "Vue/PrimeVue",
+					github: null,
+					live: null,
+				},
+				{
+					name: "Polymarket Tracker",
+					description: "Tracker for people who seem to make big bets just before a major news event.",
+					lang: "Vue/VueitifyJs",
+					github: null,
+					live: null,
+				},
+			];
+
+			const app = createApp({
+				setup() {
+					function scrollTo(id) {
+						document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+					}
+					return { skillGroups, projects, scrollTo };
+				},
+			});
+
+			app.use(PrimeVue.Config, {
+				theme: { preset: PrimeUIX.Themes.Aura },
+			});
+
+			app.component("p-button", PrimeVue.Button);
+			app.component("p-chip", PrimeVue.Chip);
+			app.component("p-card", PrimeVue.Card);
+
+			app.mount("#app");
+
+			// Typewriter
+			function typewriter(elementId, text, speed) {
+				const el = document.getElementById(elementId);
+				if (!el) return;
+				let i = 0;
+				const timer = setInterval(function () {
+					if (i < text.length) {
+						el.textContent += text[i++];
+					} else {
+						clearInterval(timer);
+					}
+				}, speed);
+			}
+			setTimeout(function () {
+				typewriter("typed-greeting", "// hello, world", 55);
+			}, 350);
+
+			// Scroll fade
+			function initScrollFade() {
+				if (!("IntersectionObserver" in window)) {
+					document.querySelectorAll(".fade-in-section").forEach(function (el) {
+						el.classList.add("visible");
+					});
+					return;
+				}
+				var observer = new IntersectionObserver(
+					function (entries) {
+						entries.forEach(function (entry) {
+							if (entry.isIntersecting) {
+								entry.target.classList.add("visible");
+								observer.unobserve(entry.target);
+							}
+						});
+					},
+					{ threshold: 0.08 },
+				);
+				document.querySelectorAll(".fade-in-section").forEach(function (el) {
+					observer.observe(el);
+				});
+			}
+			setTimeout(initScrollFade, 150);
+		</script>
+	</body>
+</html>
+
